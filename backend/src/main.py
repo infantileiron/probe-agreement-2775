@@ -8,7 +8,7 @@ from .config.settings import SEED_DEMO
 from .utils.queue import client
 from .middlewares.audit import AuditMiddleware
 from .middlewares.errors import ErrorMiddleware,validation_error_handler
-from .routes import auth,datasets,instruments,studies,runs,reviews,reports,audit
+from .routes import auth,datasets,instruments,studies,exclusions,runs,reviews,reports,audit
 @asynccontextmanager
 async def lifespan(app):
  initialize()
@@ -21,7 +21,7 @@ async def lifespan(app):
 app=FastAPI(title="霁川观测 · 双探头读数校准",lifespan=lifespan)
 app.add_exception_handler(RequestValidationError,validation_error_handler)
 app.add_middleware(AuditMiddleware);app.add_middleware(ErrorMiddleware)
-for module in [auth,datasets,instruments,studies,runs,reviews,reports,audit]:app.include_router(module.router)
+for module in [auth,datasets,instruments,studies,exclusions,runs,reviews,reports,audit]:app.include_router(module.router)
 @app.get("/health")
 def health():
  with Session() as db:db.execute(text("SELECT 1"))

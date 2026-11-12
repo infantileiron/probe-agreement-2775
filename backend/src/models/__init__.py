@@ -1,6 +1,7 @@
 from .dataset import PairedDataset
 from .instrument import InstrumentPair
 from .study import CalibrationStudy
+from .exclusion import ExclusionRule
 from .run import CalibrationRun
 from .review import BiasReview
 from .report import Report

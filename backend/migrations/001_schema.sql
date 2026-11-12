@@ -1,3 +1,5 @@
--- New MySQL baseline: SQLAlchemy metadata creates datasets, instruments, studies, runs, reviews, reports, users, audits.
+-- New MySQL baseline: SQLAlchemy metadata creates datasets, instruments, studies, exclusion_rules, runs, reviews, reports, users, audits.
 -- Study variance_ratio and tolerance explicitly use DOUBLE.
+-- exclusion_rules holds per-study pair exclusions with a mandatory reason (unique study_id+pair_id).
+-- runs.exclusion_snapshot (JSON) freezes the rules in effect at run creation; recomputation never mutates earlier runs.
 -- Existing deployments require reviewed migrations; automatic destructive upgrades are not provided.

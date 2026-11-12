@@ -8,3 +8,5 @@ class CalibrationRun(RecordMixin,Base):
  status:Mapped[str]=mapped_column(String(20),default="queued")
  result:Mapped[dict]=mapped_column(JSON,default=dict)
  error:Mapped[str]=mapped_column(Text,default="")
+ # 发起运行时生效的排除规则快照；运行计算永远只使用该快照，之后规则变更不影响已发起运行
+ exclusion_snapshot:Mapped[list]=mapped_column(JSON,default=list)
